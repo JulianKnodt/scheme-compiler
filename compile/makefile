@@ -1,0 +1,9 @@
+test: clean
+	go test ./...
+
+clean:
+	rm testdata/*.s
+
+fmt:
+	go fmt ./...
+	go vet ./...
