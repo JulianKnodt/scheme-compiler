@@ -4,8 +4,8 @@ import (
 	"strconv"
 )
 
-func CharRepresentation(a rune) string {
-	return string(a<<8 | charMask)
+func CharRepresentation(a byte) int {
+	return int(a)<<8 | charMask
 }
 
 const (

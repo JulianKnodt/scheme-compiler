@@ -9,7 +9,7 @@ import (
 
 var (
 	numberRegex = regexp.MustCompile("^-*\\d+$")
-	charRegex   = regexp.MustCompile("^#\\.+$")
+	charRegex   = regexp.MustCompile(`^#\\(.)$`)
 	exprRegex   = regexp.MustCompile(`\(\s*(\S+)\s(.+)\)`)
 )
 
@@ -40,7 +40,7 @@ func CompilePrimitive(w io.Writer, src string) (err error) {
 		}
 		_, err = fmt.Fprintf(w, movResultTemplate, n)
 	case charRegex.MatchString(src):
-
+		_, err = fmt.Fprintf(w, movResultTemplate, CharRepresentation(src[2]))
 	default:
 		err = fmt.Errorf("Cannot evaluate %s", src)
 	}
