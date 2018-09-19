@@ -43,14 +43,14 @@ var builtin = map[string]BuiltinFunction{
 			if err != nil {
 				return err
 			}
-			_, err = fmt.Fprintf(w,
-				`test %%eax, %%eax
-      jz iszero
-      movl $%d, %%eax
-      ret
-  iszero:
-      movl $%d, %%eax
-      `, F, T)
+			_, err = fmt.Fprintf(w, `
+  test %%eax, %%eax
+  jz iszero
+  movl $%d, %%eax
+  ret
+iszero:
+  movl $%d, %%eax
+`, F, T)
 			return err
 		},
 	},
@@ -61,8 +61,18 @@ var builtin = map[string]BuiltinFunction{
 			if err != nil {
 				return nil
 			}
-			// TODO
-			return nil
+			_, err = fmt.Fprintf(w,
+				`
+  cmp $%d, %%eax
+  je isbool
+  cmp $%d, %%eax
+  je isbool
+  movl $%d, %%eax
+  ret
+isbool:
+  movl $%d, %%eax # mov true
+`, F, T, F, T)
+			return err
 		},
 	},
 	"null?": BuiltinFunction{

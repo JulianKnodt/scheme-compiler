@@ -27,7 +27,7 @@ func RunTests(args ...string) error {
 	}
 	for i, v := range errors {
 		fmt.Println(erroringCases[i], ":")
-		fmt.Println("\t- ", v.Error())
+		fmt.Println("\tΔ", v.Error())
 	}
 	return TestFailedError
 }

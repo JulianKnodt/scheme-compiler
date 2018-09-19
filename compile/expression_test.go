@@ -12,11 +12,12 @@ func TestExpression(t *testing.T) {
 		"(fxzero? 1)", strconv.Itoa(F), "fxzero?_1",
 		"(fxzero? 0)", strconv.Itoa(T), "fxzero?_0",
 		"(fxsub1  0)", NumStringRepr(-1), "fxsub1_negative",
-		"( boolean? #f)", NumStringRepr(1), "boolean?_f",
-		"( boolean? #t)", NumStringRepr(1), "boolean?_t",
-		"( boolean? 1)", NumStringRepr(1), "boolean?_1",
-		"( boolean?    #\\3)", NumStringRepr(1), "boolean_char",
+		"(boolean? #f)", strconv.Itoa(T), "boolean?_f",
+		"( boolean? #t)", strconv.Itoa(T), "boolean?_t",
+		"( boolean? 1)", strconv.Itoa(F), "boolean?_1",
+		"( boolean?    #\\3)", strconv.Itoa(F), "boolean_char",
 		"( null? 1)", strconv.Itoa(F), "null?_1",
+		"( null? ())", strconv.Itoa(T), "null?_1",
 	)
 	if err != nil {
 		t.Error(err)

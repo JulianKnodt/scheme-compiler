@@ -1,8 +1,6 @@
-# HackMIT 2018
+# Scheme-Comp
 
-HackMIT 2018 project.
-
-## Plans
+A simple compiler from scheme to Intel x86 written in golang
 
 ---
 
